@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MiPageRoutingModule } from './mi-routing.module';
+import { MisdatosPageRoutingModule } from './misdatos-routing.module';
 
-import { MiPage } from './mi.page';
+import { MisdatosPage } from './misdatos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MiPageRoutingModule
+    MisdatosPageRoutingModule
   ],
-  declarations: [MiPage]
+  declarations: [MisdatosPage]
 })
-export class MiPageModule {}
+export class MisdatosPageModule {}
