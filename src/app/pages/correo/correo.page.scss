@@ -1,0 +1,43 @@
+ion-content {
+  --ion-background-color: #ffffff;
+}
+h2 {
+  color: black;
+}
+p {
+  color: black;
+}
+ion-item {
+  --ion-background-color: #ffffff;
+  --ion-box-shadow-color: #ffffff;
+}
+ion-input {
+  --ion-backgroung-color: #ffffff;
+  --ion-box-shadow-color: #ffffff;
+}
+ion-title {
+  --ion-backgroung-color: #ffffff;
+}
+ion-toolbar-container {
+  --ion-backgroung-color: #ffffff;
+}
+.custom-toolbar {
+  --background: #ffffff;
+  --color: #000000; /* Color del texto en negro, si lo prefieres */
+}
+
+.custom-item {
+  --background: #ffffff; /* Fondo blanco */
+  --color: #000000; /* Texto negro para contraste */
+  border-radius: 8px; /* Bordes redondeados opcionales */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombras opcionales */
+}
+.container-box {
+  background-color: #ffffff; /* Fondo blanco del cuadro */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border: 1px solid #ddd; /* Borde del cuadro */
+  margin: 40px auto; /* Centrado vertical y horizontal */
+  max-width: 400px; /* Tamaño máximo del cuadro */
+}

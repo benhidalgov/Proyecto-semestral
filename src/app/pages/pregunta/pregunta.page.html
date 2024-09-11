@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Pregunta</ion-title>
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <div style="text-align: center; margin-top: 40px">
+      <img
+        src="../../../assets/icon/Logo_DuocUC.svg.png"
+        alt="Duoc UC"
+        style="width: 150px"
+      />
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Pregunta</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="container-box">
+    <div style="text-align: center; margin-top: 40px">
+      <h2>Sistema de Asistencia DUOC</h2>
+    </div>
+
+    <h2 style="text-align: center">Recuperar contraseña</h2>
+    <p style="text-align: center">Paso 2: Responde la pregunta secreta</p>
+    <p style="text-align: center">¿Cual es el nombre de tu mascota?</p>
+    <ion-item class="custom-item">
+      <ion-label position="floating">Escribe tu respuesta</ion-label>
+      <ion-input type="email" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" style="margin-top: 20px" color="primary">
+      Recuperar contraseña
+    </ion-button>
+
+    <div style="text-align: center; margin-top: 20px">
+      <a href="/src/app/pages/ingreso/ingreso.page.html">Iniciar sesión</a>
+    </div>
+  </div>
 </ion-content>
