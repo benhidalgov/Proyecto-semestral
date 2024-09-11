@@ -1,13 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Ingreso</ion-title>
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <div style="text-align: center; margin-top: 40px">
+      <img
+        src="../../../assets/icon/Logo_DuocUC.svg.png"
+        alt="Duoc UC"
+        style="width: 150px"
+      />
+    </div>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Ingreso</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <img src="../../../assets/icon/Padre_alonso_ovalle-1-1920x600.jpg" alt="Padre_alonso_ovalle-1-1920x600">
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-input labelPlacement="floating" label="Cuenta" placeholder="pcabrera"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" labelPlacement="floating" label="Contraseña" placeholder="12345"> </ion-input>
+    </ion-item>
+  </ion-list>
+  <br><br><br><br>
+
+  <ion-button (click)="acceder()">
+    <ion-icon name="person" slot="start" ios="logo-apple"></ion-icon>
+    Ingresar </ion-button>
+
+    <ion-card-content>
+      <a href="">Recuperar Contraseña</a>
+    </ion-card-content>
 </ion-content>
