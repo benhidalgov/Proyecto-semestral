@@ -1,38 +1,35 @@
-<ion-header>
-  <ion-toolbar class="custom-toolbar">
-    <div style="text-align: center; margin-top: 40px">
-      <img
-        src="../../../assets/icon/Logo_DuocUC.svg.png"
-        alt="Duoc UC"
-        style="width: 150px"
-      />
-    </div>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
-  <div class="container-box">
-    <div style="text-align: center; margin-top: 40px">
-      <h2>Sistema de Asistencia DUOC</h2>
-    </div>
+  <div style="text-align: center; margin-top: 40px">
+    <h2>Sistema de Asistencia DUOC</h2>
+  </div>
 
-    <h2 style="text-align: center">Recuperar contraseña</h2>
-    <p style="text-align: center">Paso 1: Ingresa tu correo</p>
+  <h2 style="text-align: center">Recuperar contraseña</h2>
+  <p style="text-align: center">Paso 1: Ingresa tu correo</p>
 
+  <form [formGroup]="correoForm" (ngSubmit)="onSubmit()">
     <ion-item class="custom-item">
       <ion-label position="floating">Ingresa tu correo</ion-label>
-      <ion-input type="email" required></ion-input>
+      <ion-input type="email" formControlName="correo" required></ion-input>
     </ion-item>
 
-    <ion-button expand="block" style="margin-top: 20px" color="primary">
+    <div
+      *ngIf="correoForm.get('correo')?.invalid && correoForm.get('correo')?.touched"
+      style="color: red; text-align: center; margin-top: 10px"
+    >
+      {{ getCorreoErrorMessage() }}
+    </div>
+
+    <ion-button
+      expand="block"
+      style="margin-top: 20px"
+      color="primary"
+      [disabled]="correoForm.invalid"
+    >
       Recuperar contraseña
     </ion-button>
+  </form>
 
-    <div style="text-align: center; margin-top: 20px">
-      <a href="/src/app/pages/ingreso/ingreso.page.html">Iniciar sesión</a>
-    </div>
+  <div style="text-align: center; margin-top: 20px">
+    <a href="/src/app/pages/ingreso/ingreso.page.html">Iniciar sesión</a>
   </div>
 </ion-content>
-<div style="text-align: center; margin-top: 20px">
-  <a href="/src/app/pages/ingreso/ingreso.page.html">Iniciar sesión</a>
-</div>

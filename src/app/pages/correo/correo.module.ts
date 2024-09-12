@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Importar ReactiveFormsModule
 import { IonicModule } from '@ionic/angular';
-
-import { CorreoPageRoutingModule } from './correo-routing.module';
+import { RouterModule } from '@angular/router';
 
 import { CorreoPage } from './correo.page';
 
@@ -12,9 +10,10 @@ import { CorreoPage } from './correo.page';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,  // Asegurarse de importar ReactiveFormsModule aquí
     IonicModule,
-    CorreoPageRoutingModule
+    RouterModule.forChild([{ path: '', component: CorreoPage }])
   ],
   declarations: [CorreoPage]
 })
-export class CorreoPageModule {}
+export class CorreoPageModule { }
