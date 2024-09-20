@@ -1,15 +1,20 @@
-
 import { Usuario } from './Usuario';
+import { NivelEducacional } from './nivel-educacional';
 
 describe('Usuario', () => {
-  it('should create an instance', () => {
+  it('debería crear una instancia', () => {
+    const nivelEducacional = NivelEducacional.findNivelEducacionalById(1)!; // Find a valid NivelEducacional instance
     const usuario = new Usuario(
-      'atorres@duocuc.cl',
+      'jvalenzuela',
+      'jvalenzuela@duocuc.cl',
       '1234',
-      'Ana Torres Leiva',
-      '¿Cuál es tu animal favorito?',
-      'gato'
+      '¿Cuál es tu videojuego favorito?',
+      'Biomutant',
+      'Juan',
+      'Valenzuela',
+      nivelEducacional,
+      new Date(2001, 0, 1)
     );
-    expect(usuario).toBeTruthy();
+    expect(usuario).toBeTruthy(); // Expect it to be truthy
   });
 });

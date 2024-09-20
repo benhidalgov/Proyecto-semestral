@@ -1,0 +1,38 @@
+ion-content {
+    background-image: url("/assets/icon/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    --ion-background-color: transparent;
+  }
+  
+  h2,
+  p {
+    color: black;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+  }
+  
+  ion-item,
+  ion-input,
+  ion-title,
+  ion-toolbar-container,
+  .custom-toolbar {
+    --ion-background-color: rgba(255, 255, 255, 0.8);
+    --ion-box-shadow-color: #ffffff;
+  }
+  
+  .custom-item {
+    --background: rgba(255, 255, 255, 0.8);
+    --color: #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    margin: 40px auto;
+    max-width: 400px;
+  }

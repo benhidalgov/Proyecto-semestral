@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
+
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'ingreso',
     pathMatch: 'full'
   },
 
@@ -26,23 +23,23 @@ const routes: Routes = [
   },
   {
     path: 'correcto',
-    loadChildren: () => import('./pages/correcto/correcto.module').then( m => m.CorrectoPageModule)
+    loadChildren: () => import('./pages/correcto/correcto.module').then(m => m.CorrectoPageModule)
   },
   {
     path: 'incorrecto',
-    loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => m.IncorrectoPageModule)
+    loadChildren: () => import('./pages/incorrecto/incorrecto.module').then(m => m.IncorrectoPageModule)
   },
   {
     path: 'pregunta',
-    loadChildren: () => import('./pages/pregunta/pregunta.module').then( m => m.PreguntaPageModule)
+    loadChildren: () => import('./pages/pregunta/pregunta.module').then(m => m.PreguntaPageModule)
   },
   {
     path: 'miclase',
-    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
+    loadChildren: () => import('./pages/miclase/miclase.module').then(m => m.MiclasePageModule)
   },
   {
     path: 'misdatos',
-    loadChildren: () => import('./pages/misdatos/misdatos.module').then( m => m.MisdatosPageModule)
+    loadChildren: () => import('./pages/misdatos/misdatos.module').then(m => m.MisdatosPageModule)
   },
 ];
 

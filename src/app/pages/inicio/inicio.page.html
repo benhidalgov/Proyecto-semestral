@@ -1,13 +1,93 @@
+
+
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Bienvenido/a {{ cuenta }}</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title #titulo class="ion-text-left ion-text font-size-18">Sistema Asistencia Duoc</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<div class="book">
+  <ion-content [fullscreen]="true" class="ion-padding-horizontal page" #page>
+    <ion-title class="ion-padding-top">
+      <ion-item>
+        <ion-label>
+          <h1 class="ion-text-center">
+            Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}
+          </h1>
+        </ion-label>
+      </ion-item>
+    </ion-title>
+
+    <b class="ion-text-center">
+      <h4> Mis Datos </h4>
+    </b>
+
+    <ion-item #itemCuenta>
+      <ion-input 
+      [(ngModel)]="usuario.cuenta" 
+      labelPlacement="floating" 
+      label="Cuenta" placeholder="Ej: Peo"></ion-input>
+    </ion-item>
+
+    <ion-item #itemNombre>
+      <ion-input [(ngModel)]="usuario.nombre" 
+      labelPlacement="floating" 
+      label="Nombre" placeholder="Ej: Ana"></ion-input>
+    </ion-item>
+
+    <ion-item #itemApellido>
+      <ion-input [(ngModel)]="usuario.apellido" 
+      labelPlacement="floating" 
+      label="Apellido" placeholder="Ej: Carrasco"></ion-input>
+    </ion-item>
+
+    <ion-item #itemEducacion>
+      <ion-label position="floating">Educación</ion-label>
+      <ion-select placeholder="Seleccione Nivel" 
+          [(ngModel)]="usuario.nivelEducacional!.id">
+        <ion-select-option 
+          *ngFor="let nivel of listaNivelesEducacionales" 
+              [value]="nivel.id">
+          {{ nivel.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item #itemFechaNacimiento>
+      <table>
+        <tr>
+          <td class="font-size-12">
+            Nacimiento
+          </td>
+        </tr>
+      </table>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col col 3>
+          <ion-button (click)="limpiar1()" shape="block" size="small">
+            Limpiar 1
+          </ion-button>
+        </ion-col>
+        <ion-col col 3>
+          <ion-button (click)="limpiar2()" shape="block" size="small">
+            Limpiar 2
+          </ion-button>
+        </ion-col>
+        <ion-col col 3>
+          <ion-button (click)="createPageTurnAnimation()" shape="block" size="small">
+            Limpiar 3
+          </ion-button>
+        </ion-col>
+        <ion-col col 3>
+          <ion-button (click)="mostrarDatosPersonales()" shape="block" size="small">
+            Mostrar Datos
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>
+
+
+

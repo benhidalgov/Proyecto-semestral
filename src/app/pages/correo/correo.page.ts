@@ -27,7 +27,7 @@ export class CorreoPage implements OnInit {
     if (this.correoForm.valid) {
       const correoIngresado = this.correoForm.value.correo;
 
-      const usuariosValidos = new Usuario('', '', '', '', '').listaUsuariosValidos();
+      const usuariosValidos: Usuario[] = Usuario.getListarUsuarios(); // Cambia a usar el método correcto
       const usuarioEncontrado = usuariosValidos.find(usuario => usuario.correo === correoIngresado);
 
       if (!usuarioEncontrado) {
@@ -35,7 +35,7 @@ export class CorreoPage implements OnInit {
       } else {
         const navigationExtras: NavigationExtras = {
           state: {
-            usuario: usuarioEncontrado
+            usuario: usuarioEncontrado // Asegúrate de que `usuario` tenga el tipo correcto
           }
         };
         this.router.navigate(['/pregunta'], navigationExtras);
@@ -44,8 +44,6 @@ export class CorreoPage implements OnInit {
       alert('Por favor, ingresa un correo válido.');
     }
   }
-
-
 
   public getCorreoErrorMessage(): string {
     const control = this.correoForm.get('correo');
