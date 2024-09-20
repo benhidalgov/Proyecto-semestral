@@ -1,6 +1,7 @@
+import { Usuario } from './../../model/Usuario';
+import { Router, NavigationExtras } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-correo',
@@ -8,39 +9,53 @@ import { Router } from '@angular/router';
   styleUrls: ['./correo.page.scss'],
 })
 export class CorreoPage implements OnInit {
-  correoForm!: FormGroup;  // Non-null assertion (!)
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  correoForm!: FormGroup;
+
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
-    // Inicializar el formulario con las validaciones
     this.correoForm = this.formBuilder.group({
-      correo: ['', [
-        Validators.required,    // El campo es obligatorio
-        Validators.email        // Validación de formato de correo
-      ]]
+      correo: ['', [Validators.required, Validators.email]]
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     if (this.correoForm.valid) {
-      console.log('Correo válido:', this.correoForm.value.correo);
-      // Redirigir a la página de pregunta
-      this.router.navigate(['/pregunta']);
+      const correoIngresado = this.correoForm.value.correo;
+
+      const usuariosValidos = new Usuario('', '', '', '', '').listaUsuariosValidos();
+      const usuarioEncontrado = usuariosValidos.find(usuario => usuario.correo === correoIngresado);
+
+      if (!usuarioEncontrado) {
+        alert('¡El correo no existe!');
+      } else {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            usuario: usuarioEncontrado
+          }
+        };
+        this.router.navigate(['/pregunta'], navigationExtras);
+      }
     } else {
-      console.log('Correo inválido');
+      alert('Por favor, ingresa un correo válido.');
     }
   }
 
-  getCorreoErrorMessage() {
-    if (this.correoForm.get('correo')?.hasError('required')) {
-      return 'El correo es obligatorio';
-    }
 
-    if (this.correoForm.get('correo')?.hasError('email')) {
-      return 'Formato de correo incorrecto';
-    }
 
+  public getCorreoErrorMessage(): string {
+    const control = this.correoForm.get('correo');
+    if (control?.hasError('required')) {
+      return 'Debes ingresar un correo';
+    }
+    if (control?.hasError('email')) {
+      return 'Correo inválido';
+    }
     return '';
   }
+
 }

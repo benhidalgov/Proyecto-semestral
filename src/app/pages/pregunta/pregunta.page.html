@@ -18,13 +18,18 @@
 
     <h2 style="text-align: center">Recuperar contraseña</h2>
     <p style="text-align: center">Paso 2: Responde la pregunta secreta</p>
-    <p style="text-align: center">¿Cual es el nombre de tu mascota?</p>
+    <p style="text-align: center">{{ preguntaSecreta }}</p>
     <ion-item class="custom-item">
       <ion-label position="floating">Escribe tu respuesta</ion-label>
-      <ion-input type="email" required></ion-input>
+      <ion-input [(ngModel)]="respuesta" required></ion-input>
     </ion-item>
 
-    <ion-button expand="block" style="margin-top: 20px" color="primary">
+    <ion-button
+      expand="block"
+      style="margin-top: 20px"
+      color="primary"
+      (click)="onSubmit()"
+    >
       Recuperar contraseña
     </ion-button>
 
