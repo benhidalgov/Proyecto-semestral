@@ -1,4 +1,4 @@
-import { Usuario } from './../../model/Usuario';
+import { Usuario } from '../../model/Usuario';
 import { Router, NavigationExtras } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -24,24 +24,25 @@ export class CorreoPage implements OnInit {
   }
 
   public onSubmit(): void {
-    if (this.correoForm.valid) {
-      const correoIngresado = this.correoForm.value.correo;
+    if (this.correoForm.invalid) {
+      this.correoForm.markAllAsTouched(); // Marca todos los campos como tocados para mostrar los mensajes de error
+      return;
+    }
 
-      const usuariosValidos: Usuario[] = Usuario.getListarUsuarios(); // Cambia a usar el método correcto
-      const usuarioEncontrado = usuariosValidos.find(usuario => usuario.correo === correoIngresado);
+    const correoIngresado = this.correoForm.value.correo;
 
-      if (!usuarioEncontrado) {
-        alert('¡El correo no existe!');
-      } else {
-        const navigationExtras: NavigationExtras = {
-          state: {
-            usuario: usuarioEncontrado // Asegúrate de que `usuario` tenga el tipo correcto
-          }
-        };
-        this.router.navigate(['/pregunta'], navigationExtras);
-      }
+    const usuariosValidos: Usuario[] = Usuario.getListarUsuarios();
+    const usuarioEncontrado = usuariosValidos.find(usuario => usuario.correo === correoIngresado);
+
+    if (!usuarioEncontrado) {
+      alert('¡El correo no existe!');
     } else {
-      alert('Por favor, ingresa un correo válido.');
+      const navigationExtras: NavigationExtras = {
+        state: {
+          usuario: usuarioEncontrado
+        }
+      };
+      this.router.navigate(['/pregunta'], navigationExtras);
     }
   }
 
@@ -55,5 +56,4 @@ export class CorreoPage implements OnInit {
     }
     return '';
   }
-
 }

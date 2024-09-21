@@ -33,6 +33,12 @@ export class IngresoPage implements OnInit {
 
   }
 
+  public ingresarPaginaValidarCorreo(): void{
+    this.router.navigate(['/correo']);
+  }
+
+
+
   public ingresar(){
     if (this.usuario) {
       if (!this.validarUsuario(this.usuario)) return;
@@ -40,13 +46,13 @@ export class IngresoPage implements OnInit {
           this.usuario.cuenta, this.usuario.password);
 
         if (usu) {
-          const extras: NavigationExtras = {
+          const NavigationExtras: NavigationExtras = {
             state: {
               usuario: usu
             }
           }
           this.mostrarMensaje('¡Bienvenido(a) al sistema de asistencia DUOC')
-          this.router.navigate(['/inicio'], extras)
+          this.router.navigate(['/inicio'], NavigationExtras)
         }
      }
   }

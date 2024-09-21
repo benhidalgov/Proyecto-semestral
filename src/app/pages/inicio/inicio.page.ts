@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, AnimationController } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Usuario } from 'src/app/model/Usuario';
 
@@ -14,6 +14,14 @@ import { Usuario } from 'src/app/model/Usuario';
 export class InicioPage implements OnInit, AfterViewInit {
 
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+  @ViewChild('page', { read: ElementRef }) page!: ElementRef;
+  @ViewChild('itemCuenta', { read: ElementRef }) itemCuenta!: ElementRef;
+  @ViewChild('itemNombre', { read: ElementRef }) itemNombre!: ElementRef;
+  @ViewChild('itemApellido', { read: ElementRef }) itemApellido!: ElementRef;
+  @ViewChild('itemEducacion', { read: ElementRef }) itemEducacion!: ElementRef;
+  @ViewChild('itemFechaNacimiento', { read: ElementRef }) itemFechaNacimiento!: ElementRef;
+  
+
 
   public usuario: Usuario = new Usuario('', '', '', '', '', '', '',
     NivelEducacional.findNivelEducacionalById(1)!, undefined);
@@ -21,11 +29,12 @@ export class InicioPage implements OnInit, AfterViewInit {
   public listaNivelesEducacionales = NivelEducacional.getNivelesEducacionales();
 
   constructor(
-    private alertController: AlertController, private activatedRoute: ActivatedRoute, private router: Router) {
+    private alertController: AlertController, private activatedRoute: ActivatedRoute, private router: Router, private animationController: AnimationController)
+   {
     this.activatedRoute.queryParams.subscribe(params => {
       const nav = this.router.getCurrentNavigation();
-      if (nav) {
-        if (nav.extras.state) {
+      if (nav){
+        if (nav.extras.state){
           this.usuario = nav.extras.state['usuario'];
           return;
         }
@@ -39,34 +48,84 @@ export class InicioPage implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    if (this.itemTitulo) {
-      // Aquí puedes realizar alguna acción con itemTitulo
+    if (this.itemTitulo){
+      const animation= this.animationController
+        .create()
+        .addElement(this.itemTitulo.nativeElement)
+        .iterations(Infinity)
+        .duration(6000)
+        .fromTo('transform', 'translate(0%)', 'translate(100%)')
+        .fromTo('opacity', 0.2,1);
+      animation.play();
     }
+    this.createPageTurnAnimation();
   }
 
   public limpiar1(): void {
+    this.usuario.cuenta='';
+    this.usuario.nombre='';
+    this.usuario.apellido='';
+    this.usuario.nivelEducacional = NivelEducacional.findNivelEducacionalById(1)!;
+    this.usuario.fechaNacimiento= undefined;
 
+    this.animateItem1(this.itemCuenta.nativeElement,800);
+    this.animateItem1(this.itemNombre.nativeElement,1100);
+    this.animateItem1(this.itemApellido.nativeElement,1300);
+    this.animateItem1(this.itemEducacion.nativeElement,1500);   
+    this.animateItem1(this.itemFechaNacimiento.nativeElement,2000);
   }
 
   public limpiar2(): void {
+    this.usuario.cuenta='';
+    this.usuario.nombre='';
+    this.usuario.apellido='';
+    this.usuario.nivelEducacional = NivelEducacional.findNivelEducacionalById(1)!;
+    this.usuario.fechaNacimiento= undefined;
 
+    this.animateItem2(this.itemCuenta.nativeElement,800);
+    this.animateItem2(this.itemNombre.nativeElement,1100);
+    this.animateItem2(this.itemApellido.nativeElement,1300);
+    this.animateItem2(this.itemEducacion.nativeElement,1500);   
+    this.animateItem2(this.itemFechaNacimiento.nativeElement,2000);
   }
 
-  public mostrarDatosPersonales() {
+  public mostrarDatosPersonales(){
 
   }
 
   public animateItem1(elementRef: any, duration: number) {
-
+    const animation = this.animationController
+      .create()
+      .addElement(elementRef)
+      .iterations(1)
+      .duration(duration)
+      .fromTo('transform', 'translate(100%)', 'rotateY(0%)')
+      .fromTo('opacity', 0.2,1);
+    animation.play();    
   }
 
   public animateItem2(elementRef: any, duration: number) {
-
+    const animation = this.animationController
+      .create()
+      .addElement(elementRef)
+      .iterations(1)
+      .duration(duration)
+      .fromTo('transform', 'rotate(0deg)', 'rotate(360deg)')
+    animation.play(); 
   }
 
   createPageTurnAnimation() {
-
+    const animation = this.animationController
+      .create()
+      .addElement(this.page.nativeElement)
+      .iterations(1)
+      .duration(1000)
+      .fromTo('transform', 'rotateY(0deg)', 'rotateY(-180deg)')
+      .duration(1000)
+      .fromTo('transform', 'rotateY(-180deg)', 'rotateY(0deg)')
+    animation.play();
   }
+
   public mostrarDatosPersona(): void {
     // Si el usuario no ingresa la cuenta, se mostrará un error
     if (this.usuario.cuenta.trim() === '') {
@@ -113,4 +172,9 @@ export class InicioPage implements OnInit, AfterViewInit {
     const year = date.getFullYear(); // Obtener el año
     return `${day}/${month}/${year}`;
   }
+
+
+
+
+
 }
