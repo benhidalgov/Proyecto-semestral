@@ -1,8 +1,9 @@
-<ion-header>
+<ion-header [translucent]="true">
+
   <ion-toolbar class="custom-toolbar">
     <div style="text-align: center; margin-top: 40px">
       <img
-        src="../../../assets/icon/Logo_DuocUC.svg.png"
+        src="../../assets/icon/Logo_DuocUC.svg.png"
         alt="Duoc UC"
         style="width: 150px"
       />
@@ -10,29 +11,22 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
 
-<ion-content [fullscreen]="true">
-
-
-  <ion-list>
-    <ion-item>
-      <ion-input [(ngModel)]="usuario.cuenta" labelPlacement="floating" label="Cuenta" placeholder="EJ: pcabrera"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input [(ngModel)]="usuario.password" type="password" labelPlacement="floating" label="Contraseña" placeholder="EJ: 12345"> </ion-input>
-    </ion-item>
-  </ion-list>
-
-  <br>
-
-  <ion-button (click)="ingresar()">
-    <ion-icon name="person" slot="start" ios="logo-apple"></ion-icon>
-    Ingresar </ion-button>
-
-  <ion-label>
-    <br>
-    <a (click)="ingresarPaginaValidarCorreo()">Recuperar Contraseña</a>
-  </ion-label>
-
+  <div class="centrado-vertical">
+    <div class="marco">
+      <ion-item>
+        <ion-input [(ngModel)]="correo" type="text" label="Correo" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="password" type="password" label="Contraseña" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <div class="alinear-centro">
+        <ion-button (click)="ingresar()">
+          Ingresar
+        </ion-button>
+      </div>
+    </div>
+  </div>
 
 </ion-content>

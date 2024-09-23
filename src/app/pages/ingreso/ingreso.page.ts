@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
-import { Usuario } from 'src/app/model/Usuario';
+import { Usuario } from '../../model/Usuario';
 
 @Component({
   selector: 'app-ingreso',
@@ -11,68 +10,53 @@ import { Usuario } from 'src/app/model/Usuario';
   styleUrls: ['./ingreso.page.scss'],
 })
 export class IngresoPage implements OnInit {
-
-  public cuenta: string;
+  public correo: string; // Declarar la propiedad correo
   public password: string;
-
-  public usuario: Usuario;
 
   constructor(
     private toastController: ToastController,
-    private router: Router)
-    {
-    this.cuenta = '';
+    private router: Router
+  ) {
+    this.correo = ''; // Inicializar correo
     this.password = '';
-    this.usuario = new Usuario('','','','','','','',
-    NivelEducacional.findNivelEducacionalById(1)!, undefined);
-    this.usuario.cuenta = 'jvalenzuela';
-    this.usuario.password = '1234';
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-  }
-
-  public ingresarPaginaValidarCorreo(): void{
+  public ingresarPaginaValidarCorreo(): void {
     this.router.navigate(['/correo']);
   }
 
-
-
-  public ingresar(){
-    if (this.usuario) {
-      if (!this.validarUsuario(this.usuario)) return;
-        const usu: Usuario | undefined = this.usuario.buscarUsuarioValido(
-          this.usuario.cuenta, this.usuario.password);
-
-        if (usu) {
-          const NavigationExtras: NavigationExtras = {
-            state: {
-              usuario: usu
-            }
-          }
-          this.mostrarMensaje('¡Bienvenido(a) al sistema de asistencia DUOC')
-          this.router.navigate(['/inicio'], NavigationExtras)
-        }
-     }
-  }
-
-  public validarUsuario(usuario: Usuario): boolean{
-    const mensajeError = usuario.validarCuenta();
-    if(mensajeError){
-      this.mostrarMensaje(mensajeError)
-      return false;
+  public ingresar() {
+    if (!this.correo.trim() || !this.password.trim()) {
+      this.mostrarMensaje('Por favor, ingrese correo y contraseña.');
+      return;
     }
-    return true;
+
+    // Buscar el usuario en la lista
+    const usu: Usuario | undefined = Usuario.getListarUsuarios().find(
+      user => user.correo === this.correo.trim() && user.password === this.password.trim()
+    );
+
+    if (usu) {
+      const navigationExtras: NavigationExtras = {
+        state: {
+          usuario: usu
+        }
+      };
+      this.mostrarMensaje('¡Bienvenido(a) al sistema de asistencia DUOC');
+      console.log('Redireccionando a inicio...', usu);
+      this.router.navigate(['/inicio'], navigationExtras);
+    } else {
+      this.mostrarMensaje('Correo o contraseña incorrectos');
+    }
   }
 
   async mostrarMensaje(mensaje: string, duracion?: number) {
     const toast = await this.toastController.create({
       message: mensaje,
-      duration: duracion? duracion: 2000
+      duration: duracion ? duracion : 2000
     });
     toast.present();
   }
-
-
 }

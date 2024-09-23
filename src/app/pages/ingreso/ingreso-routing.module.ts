@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { IngresoPage } from './ingreso.page';
 
 const routes: Routes = [

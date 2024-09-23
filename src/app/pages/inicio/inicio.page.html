@@ -1,22 +1,43 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title #titulo class="ion-text-left ion-text font-size-18">Sistema Asistencia Duoc</ion-title>
+  <ion-toolbar class="custom-toolbar">
+    <div style="text-align: center; margin-top: 40px">
+      <img
+        src="../../assets/icon/Logo_DuocUC.svg.png"
+        alt="Duoc UC"
+        style="width: 150px"
+      />
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-title>Asistencia DUOC - Inicio</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment
+      [(ngModel)]="componenteActual"
+    >
+      <ion-segment-button value="qr">
+        <ion-label>QR</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="miclase">
+        <ion-label>Mi clase</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="misdatos">
+        <ion-label>Mis datos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<div class="book">
-  <ion-content [fullscreen]="true" class="ion-padding-horizontal page" #page>
-    <ion-title class="ion-padding-top">
-      <ion-item>
-        <ion-label>
-          <h1 class="ion-text-center">
-            ¡Bienvenido(a) Estudiante!
-          </h1>
-        </ion-label>
-      </ion-item>
-    </ion-title>
-
-
-    <b class="ion-text-center">
-      <h4> {{ usuario.nombre }} {{ usuario.apellido }} </h4>
-    </b>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button
+      (click)="cerrarSesion()"
+      expand="block"
+      fill="clear"
+      shape="round"
+    >
+      Cerrar sesión
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

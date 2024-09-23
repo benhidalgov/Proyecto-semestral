@@ -126,7 +126,7 @@ export class Usuario extends Persona {
             new Usuario(
                 'bvaldebenito',
                 'bvaldebenito@duocuc.cl',
-                '4321',
+                '   ',
                 '¿Cuál es tu marca de auto preferida?',
                 'Nissan',
                 'Betsabé',
